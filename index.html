@@ -31,7 +31,6 @@
       overflow-x: hidden;
     }
 
-    /* Background grid */
     body::before {
       content: '';
       position: fixed;
@@ -44,7 +43,6 @@
       z-index: 0;
     }
 
-    /* Glow blobs */
     .blob {
       position: fixed;
       border-radius: 50%;
@@ -64,7 +62,6 @@
       padding: 40px 24px 80px;
     }
 
-    /* Header */
     header {
       text-align: center;
       margin-bottom: 56px;
@@ -104,7 +101,6 @@
       line-height: 1.6;
     }
 
-    /* Main layout */
     .main-grid {
       display: grid;
       grid-template-columns: 1fr 1fr;
@@ -115,7 +111,6 @@
       .main-grid { grid-template-columns: 1fr; }
     }
 
-    /* Panel */
     .panel {
       background: var(--surface);
       border: 1px solid var(--border);
@@ -141,7 +136,6 @@
       background: var(--border);
     }
 
-    /* Form fields */
     .field { margin-bottom: 18px; }
     label {
       display: block;
@@ -175,7 +169,6 @@
     }
     textarea { min-height: 120px; line-height: 1.6; }
 
-    /* Avatar upload area */
     .avatar-row {
       display: flex;
       align-items: center;
@@ -205,7 +198,6 @@
     .avatar-upload-btn:hover { border-color: var(--accent); color: var(--accent); }
     #avatarFileInput { display: none; }
 
-    /* Theme toggle */
     .theme-row {
       display: flex;
       gap: 10px;
@@ -227,14 +219,12 @@
     .theme-btn.dim-btn   { background: #1e2732; color: #fff; border-color: #2d3748; }
     .theme-btn.active    { border-color: var(--accent); box-shadow: 0 0 0 3px rgba(29,155,240,.2); }
 
-    /* Stats row */
     .stats-row {
       display: grid;
       grid-template-columns: 1fr 1fr 1fr;
       gap: 10px;
     }
 
-    /* Download btn */
     .download-btn {
       width: 100%;
       margin-top: 20px;
@@ -258,7 +248,6 @@
     .download-btn:active { transform: translateY(0); }
     .download-btn:disabled { opacity: 0.6; cursor: not-allowed; transform: none; }
 
-    /* Preview panel */
     .preview-panel {
       background: var(--surface);
       border: 1px solid var(--border);
@@ -266,34 +255,50 @@
       padding: 28px;
       position: sticky;
       top: 24px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
     }
 
-    /* Preview phone frame */
+    /* PENTING: Phone frame dengan ratio 9:16 */
     .phone-frame {
+      width: 100%;
+      max-width: 360px;
+      aspect-ratio: 9 / 16;
       background: #111;
-      border-radius: 28px;
-      border: 6px solid #222;
-      padding: 24px 16px;
+      border-radius: 40px;
+      border: 12px solid #222;
+      padding: 12px;
       box-shadow: 0 32px 80px rgba(0,0,0,.6), inset 0 0 0 1px rgba(255,255,255,.05);
       position: relative;
       overflow: hidden;
+      display: flex;
+      flex-direction: column;
     }
+    
     .phone-frame::before {
       content: '';
-      display: block;
-      width: 80px; height: 6px;
-      background: #333;
-      border-radius: 3px;
-      margin: 0 auto 20px;
+      position: absolute;
+      top: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 120px;
+      height: 24px;
+      background: #1a1a1a;
+      border-radius: 0 0 20px 20px;
+      z-index: 10;
     }
 
-    /* The actual tweet card */
     #tweet-card {
       background: white;
-      border-radius: 16px;
-      padding: 20px;
+      border-radius: 0;
+      padding: 16px;
       font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif;
       transition: background 0.25s;
+      width: 100%;
+      height: 100%;
+      overflow-y: auto;
+      margin-top: 12px;
     }
     #tweet-card.dark-theme  { background: #15202b; }
     #tweet-card.dim-theme   { background: #1e2732; }
@@ -305,7 +310,8 @@
       gap: 12px;
     }
     .tc-avatar {
-      width: 48px; height: 48px;
+      width: 48px;
+      height: 48px;
       border-radius: 50%;
       object-fit: cover;
       flex-shrink: 0;
@@ -322,16 +328,17 @@
     #tweet-card.dim-theme .tc-name  { color: #fff; }
 
     .tc-verified {
-      width: 18px; height: 18px;
+      width: 18px;
+      height: 18px;
       flex-shrink: 0;
     }
     .tc-handle { color: rgb(83,100,113); font-size: 14px; }
     #tweet-card.dark-theme .tc-handle,
     #tweet-card.dim-theme  .tc-handle { color: #8b98a5; }
 
-    .tc-more { color: rgb(83,100,113); font-size: 20px; line-height: 1; }
+    .tc-more { color: rgb(83,100,113); font-size: 18px; line-height: 1; cursor: pointer; }
     .tc-content {
-      font-size: 20px;
+      font-size: 18px;
       line-height: 1.55;
       color: rgb(15,20,25);
       margin-bottom: 14px;
@@ -373,18 +380,20 @@
 
     .tc-actions {
       display: flex;
-      justify-content: space-between;
+      justify-content: space-around;
       padding-top: 4px;
     }
     .tc-action-icon {
-      width: 20px; height: 20px;
+      width: 18px;
+      height: 18px;
       fill: rgb(83,100,113);
       display: block;
+      cursor: pointer;
     }
 
-    /* Spinner for download */
     .spin {
-      width: 18px; height: 18px;
+      width: 18px;
+      height: 18px;
       border: 2px solid rgba(255,255,255,.3);
       border-top-color: #fff;
       border-radius: 50%;
@@ -392,7 +401,6 @@
     }
     @keyframes spin { to { transform: rotate(360deg); } }
 
-    /* Toast */
     .toast {
       position: fixed;
       bottom: 32px;
@@ -410,7 +418,6 @@
     }
     .toast.show { transform: translateX(-50%) translateY(0); }
 
-    /* Char counter */
     .char-count {
       text-align: right;
       font-size: 11px;
@@ -428,7 +435,7 @@
   <div class="wrapper">
     <header>
       <div class="badge">
-        <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.747l7.73-8.835L1.254 2.25H8.08l4.253 5.622zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.747l7.73-8.835L1.254 2.25H8.08l4.253 5.359 5.911-5.359z"/></svg>
         Free · No Login · Runs in Browser
       </div>
       <h1>FakeTweet<br>Generator</h1>
@@ -482,7 +489,7 @@
           <div class="field">
             <label>Tweet Content</label>
             <textarea id="tweetContent" maxlength="560" placeholder="What's happening?">Hello World! 🌍</textarea>
-            <div class="char-count" id="charCount">7 / 280</div>
+            <div class="char-count" id="charCount">15 / 280</div>
           </div>
 
           <div class="field">
@@ -547,7 +554,7 @@
                 <div class="tc-name-row">
                   <span class="tc-name" id="tc-name">Bukan Coretan</span>
                   <svg id="tc-verified" class="tc-verified" viewBox="0 0 24 24" fill="#1d9bf0">
-                    <path d="M22.25 12c0-1.43-.88-2.67-2.19-3.34.46-1.39.2-2.9-.81-3.91s-2.52-1.27-3.91-.81c-.66-1.31-1.91-2.19-3.34-2.19s-2.67.88-3.33 2.19c-1.4-.46-2.91-.2-3.92.81s-1.26 2.52-.8 3.91C1.88 9.33 1 10.57 1 12s.88 2.67 2.19 3.34c-.46 1.39-.21 2.9.8 3.91s2.52 1.26 3.91.81c.67 1.31 1.91 2.19 3.34 2.19s2.68-.88 3.34-2.19c1.39.45 2.9.2 3.91-.81.81-1.01 1.26-2.52.81-3.91 1.31-.67 2.19-1.91 2.19-3.34zm-11.71 4.2L6.8 12.46l1.41-1.42 2.26 2.26 4.8-5.23 1.47 1.36-6.2 6.77z"/>
+                    <path d="M22.25 12c0-1.43-.88-2.67-2.19-3.34.46-1.39.2-2.9-.81-3.91s-2.52-1.27-3.91-.81c-.66-1.31-1.91-2.19-3.34-2.19s-2.67.88-3.33 2.19c-1.4-.46-2.91-.2-3.92.81s-1.26 2.52-.8 3.91-.95 1.91-2.19 3.34c0 1.43.88 2.67 2.19 3.34-.46 1.39-.2 2.9.81 3.91s2.52 1.27 3.91.81c.66 1.31 1.91 2.19 3.34 2.19s2.67-.88 3.33-2.19c1.4.46 2.91.2 3.92-.81s1.26-2.52.8-3.91 1.95-1.91 2.19-3.34zm-11.08 5.54c-.72 0-1.37-.29-1.85-.77-.47-.48-.77-1.15-.82-1.9h1.60c.05.48.36.89.77 1.04.41.15.87.06 1.22-.25.35-.31.56-.77.56-1.25 0-.48-.2-.94-.56-1.25-.35-.31-.81-.4-1.22-.25-.41.15-.72.56-.77 1.04h-1.60c.05-.75.35-1.42.82-1.9.47-.48 1.13-.77 1.85-.77.72 0 1.37.29 1.85.77.47.48.77 1.15.82 1.9-.05.75-.35 1.42-.82 1.9-.47.48-1.13.77-1.85.77z"/>
                   </svg>
                 </div>
                 <div class="tc-handle" id="tc-handle">@bukan.coretan</div>
@@ -572,14 +579,10 @@
             </div>
 
             <div class="tc-actions">
-              <!-- Reply -->
               <svg class="tc-action-icon" viewBox="0 0 24 24"><path d="M1.751 10c0-4.42 3.584-8 8.005-8h4.366c4.49 0 8.129 3.64 8.129 8.13 0 2.96-1.607 5.68-4.196 7.11l-8.054 4.46v-3.69h-.067c-4.49.1-8.183-3.51-8.183-8.01zm8.005-6c-3.317 0-6.005 2.69-6.005 6 0 3.37 2.77 6.08 6.138 6.01l.351-.01h1.761v2.3l5.087-2.81c1.951-1.08 3.163-3.13 3.163-5.36 0-3.39-2.744-6.13-6.129-6.13H9.756z"/></svg>
-              <!-- Retweet -->
               <svg class="tc-action-icon" viewBox="0 0 24 24"><path d="M4.5 3.88l4.432 4.14-1.364 1.46L5.5 7.55V16c0 1.1.896 2 2 2H13v2H7.5c-2.209 0-4-1.79-4-4V7.55L1.432 9.48.068 8.02 4.5 3.88zM16.5 6H11V4h5.5c2.209 0 4 1.79 4 4v8.45l2.068-1.93 1.364 1.46-4.432 4.14-4.432-4.14 1.364-1.46 2.068 1.93V8c0-1.1-.896-2-2-2z"/></svg>
-              <!-- Like -->
               <svg class="tc-action-icon" viewBox="0 0 24 24"><path d="M16.697 5.5c-1.222-.06-2.679.51-3.89 2.16l-.805 1.09-.806-1.09C9.984 6.01 8.526 5.44 7.304 5.5c-1.243.07-2.349.78-2.91 1.91-.552 1.12-.633 2.78.479 4.82 1.074 1.97 3.257 4.27 7.129 6.61 3.87-2.34 6.052-4.64 7.126-6.61 1.111-2.04 1.03-3.7.477-4.82-.561-1.13-1.666-1.84-2.908-1.91zm4.187 7.69c-1.351 2.48-4.001 5.12-8.379 7.67l-.503.3-.504-.3c-4.379-2.55-7.029-5.19-8.382-7.67-1.36-2.5-1.41-4.86-.514-6.67.887-1.79 2.647-2.91 4.601-3.01 1.651-.09 3.368.56 4.798 2.01 1.429-1.45 3.146-2.1 4.796-2.01 1.954.1 3.714 1.22 4.601 3.01.896 1.81.846 4.17-.514 6.67z"/></svg>
-              <!-- Share -->
-              <svg class="tc-action-icon" viewBox="0 0 24 24"><path d="M12 2.59l5.7 5.7-1.41 1.42L13 6.41V16h-2V6.41l-3.3 3.3-1.41-1.42L12 2.59zM21 15l-.02 3.51c0 1.38-1.12 2.49-2.5 2.49H5.5C4.11 21 3 19.88 3 18.5V15h2v3.5c0 .28.22.5.5.5h12.98c.28 0 .5-.22.5-.5L19 15h2z"/></svg>
+              <svg class="tc-action-icon" viewBox="0 0 24 24"><path d="M12 2.59l5.7 5.7-1.41 1.42L13 6.41V16h-2V6.41l-3.3 3.3-1.41-1.42L12 2.59zM21 15l-.02 3.51c0 1.38-1.12 2.49-2.5 2.49H5.5C4.11 21 3 19.88 3 18.5v-9C3 8.12 4.12 7 5.5 7H11v2H5.5c-.83 0-1.5.67-1.5 1.5v9c0 .83.67 1.5 1.5 1.5h13c.83 0 1.5-.67 1.5-1.5l.02-3.51h2z"/></svg>
             </div>
           </div>
         </div>
@@ -590,13 +593,11 @@
   <div class="toast" id="toast">✅ Downloaded!</div>
 
   <script>
-    // Init time/date
     const now = new Date();
     document.getElementById('tweetTime').value = now.toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit', hour12: false });
     document.getElementById('tweetDate').value = now.toLocaleDateString('en-US', { day: '2-digit', month: 'short', year: '2-digit' });
     syncAllToPreview();
 
-    // Live sync all inputs
     const syncMap = {
       displayName:  () => document.getElementById('tc-name').textContent = v('displayName'),
       userHandle:   () => document.getElementById('tc-handle').textContent = v('userHandle'),
@@ -620,12 +621,8 @@
     });
 
     function v(id) { return document.getElementById(id).value; }
+    function syncAllToPreview() { Object.values(syncMap).forEach(fn => fn()); }
 
-    function syncAllToPreview() {
-      Object.values(syncMap).forEach(fn => fn());
-    }
-
-    // Avatar file upload
     document.getElementById('avatarFileInput').addEventListener('change', function(e) {
       const file = e.target.files[0];
       if (!file) return;
@@ -643,7 +640,6 @@
       document.getElementById('tc-avatar').src = src;
     }
 
-    // Char count
     function updateCharCount() {
       const len = v('tweetContent').length;
       const el = document.getElementById('charCount');
@@ -651,7 +647,6 @@
       el.className = 'char-count' + (len > 280 ? ' over' : len > 240 ? ' warn' : '');
     }
 
-    // Theme
     function setTheme(theme, btn) {
       const card = document.getElementById('tweet-card');
       card.className = theme === 'light' ? '' : theme + '-theme';
@@ -659,7 +654,6 @@
       btn.classList.add('active');
     }
 
-    // Download
     async function downloadTweet() {
       const btn = document.getElementById('downloadBtn');
       btn.disabled = true;

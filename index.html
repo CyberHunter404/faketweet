@@ -260,88 +260,83 @@
       align-items: center;
     }
 
-    /* PENTING: Phone frame dengan ratio 9:16 */
+    /* Plain 9:16 canvas — no phone chrome */
     .phone-frame {
       width: 100%;
-      max-width: 360px;
+      max-width: 270px;
       aspect-ratio: 9 / 16;
-      background: #111;
-      border-radius: 40px;
-      border: 12px solid #222;
-      padding: 12px;
-      box-shadow: 0 32px 80px rgba(0,0,0,.6), inset 0 0 0 1px rgba(255,255,255,.05);
+      background: #ffffff;
+      border-radius: 0;
+      border: 1px solid #d1d5db;
+      padding: 10% 14%;
+      box-shadow: 0 8px 32px rgba(0,0,0,.18);
       position: relative;
       overflow: hidden;
       display: flex;
       flex-direction: column;
-    }
-    
-    .phone-frame::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 50%;
-      transform: translateX(-50%);
-      width: 120px;
-      height: 24px;
-      background: #1a1a1a;
-      border-radius: 0 0 20px 20px;
-      z-index: 10;
+      align-items: stretch;
+      justify-content: center;
+      box-sizing: border-box;
     }
 
     #tweet-card {
       background: white;
       border-radius: 0;
-      padding: 16px;
+      padding: 8px 10px;
       font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif;
       transition: background 0.25s;
       width: 100%;
-      height: 100%;
-      overflow-y: auto;
-      margin-top: 12px;
+      flex-shrink: 0;
+      border-top: 1px solid #e5e7eb;
+      border-bottom: 1px solid #e5e7eb;
     }
-    #tweet-card.dark-theme  { background: #15202b; }
-    #tweet-card.dim-theme   { background: #1e2732; }
+    #tweet-card.dark-theme  { background: #15202b; border-color: #2d3748; }
+    #tweet-card.dim-theme   { background: #1e2732; border-color: #2d3748; }
+    .phone-frame:has(#tweet-card.dark-theme) { background: #15202b; border-color: #2d3748; }
+    .phone-frame:has(#tweet-card.dim-theme)  { background: #1e2732; border-color: #2d3748; }
 
     .tc-header {
       display: flex;
       align-items: flex-start;
-      margin-bottom: 12px;
-      gap: 12px;
+      margin-bottom: 6px;
+      gap: 7px;
     }
     .tc-avatar {
-      width: 48px;
-      height: 48px;
+      width: 28px;
+      height: 28px;
       border-radius: 50%;
       object-fit: cover;
       flex-shrink: 0;
     }
     .tc-user { flex: 1; }
-    .tc-name-row { display: flex; align-items: center; gap: 4px; }
+    .tc-name-row { display: flex; align-items: center; gap: 3px; }
     .tc-name {
       font-weight: 700;
-      font-size: 15px;
+      font-size: 11px;
       color: rgb(15,20,25);
       line-height: 1.3;
     }
     #tweet-card.dark-theme .tc-name,
     #tweet-card.dim-theme .tc-name  { color: #fff; }
 
-    .tc-verified {
-      width: 18px;
-      height: 18px;
+    .tc-lock {
+      width: 10px;
+      height: 10px;
+      fill: rgb(83,100,113);
       flex-shrink: 0;
     }
-    .tc-handle { color: rgb(83,100,113); font-size: 14px; }
+    #tweet-card.dark-theme .tc-lock,
+    #tweet-card.dim-theme  .tc-lock { fill: #8b98a5; }
+    .tc-handle { color: rgb(83,100,113); font-size: 10px; }
     #tweet-card.dark-theme .tc-handle,
     #tweet-card.dim-theme  .tc-handle { color: #8b98a5; }
 
-    .tc-more { color: rgb(83,100,113); font-size: 18px; line-height: 1; cursor: pointer; }
+    .tc-more { color: rgb(83,100,113); font-size: 12px; line-height: 1; cursor: pointer; }
     .tc-content {
-      font-size: 18px;
-      line-height: 1.55;
+      font-size: 12px;
+      line-height: 1.5;
       color: rgb(15,20,25);
-      margin-bottom: 14px;
+      margin-bottom: 8px;
       white-space: pre-wrap;
       word-break: break-word;
     }
@@ -350,10 +345,10 @@
 
     .tc-meta {
       color: rgb(83,100,113);
-      font-size: 13px;
-      margin-bottom: 12px;
+      font-size: 9px;
+      margin-bottom: 6px;
       display: flex;
-      gap: 4px;
+      gap: 3px;
       flex-wrap: wrap;
     }
     #tweet-card.dark-theme .tc-meta,
@@ -363,29 +358,31 @@
     .tc-stats-bar {
       border-top: 1px solid #e5e7eb;
       border-bottom: 1px solid #e5e7eb;
-      padding: 10px 0;
-      margin-bottom: 8px;
+      padding: 5px 0;
+      margin-bottom: 5px;
       display: flex;
-      gap: 20px;
+      align-items: center;
+      gap: 5px;
+      color: rgb(83,100,113);
+      font-size: 9px;
     }
     #tweet-card.dark-theme .tc-stats-bar { border-color: #2d3748; }
     #tweet-card.dim-theme  .tc-stats-bar { border-color: #2d3748; }
-
-    .tc-stat { font-size: 13px; color: rgb(15,20,25); }
-    #tweet-card.dark-theme .tc-stat,
-    #tweet-card.dim-theme  .tc-stat { color: #fff; }
-    .tc-stat span { color: rgb(83,100,113); }
-    #tweet-card.dark-theme .tc-stat span,
-    #tweet-card.dim-theme  .tc-stat span { color: #8b98a5; }
+    .tc-activity-icon {
+      width: 10px;
+      height: 10px;
+      fill: rgb(83,100,113);
+      flex-shrink: 0;
+    }
 
     .tc-actions {
       display: flex;
       justify-content: space-around;
-      padding-top: 4px;
+      padding-top: 3px;
     }
     .tc-action-icon {
-      width: 18px;
-      height: 18px;
+      width: 10px;
+      height: 10px;
       fill: rgb(83,100,113);
       display: block;
       cursor: pointer;
@@ -478,8 +475,8 @@
           </div>
 
           <div class="field" style="display:flex;align-items:center;gap:10px;">
-            <input type="checkbox" id="verifiedCheck" checked style="accent-color:var(--accent);width:16px;height:16px;">
-            <label style="margin:0;text-transform:none;font-size:.9rem;letter-spacing:0;">Show verified badge</label>
+            <input type="checkbox" id="lockCheck" checked style="accent-color:var(--accent);width:16px;height:16px;">
+            <label style="margin:0;text-transform:none;font-size:.9rem;letter-spacing:0;">Show lock icon (private account)</label>
           </div>
         </div>
 
@@ -509,24 +506,6 @@
         </div>
 
         <div class="panel" style="margin-top:20px;">
-          <div class="panel-title">Stats</div>
-          <div class="stats-row">
-            <div class="field">
-              <label>Replies</label>
-              <input type="text" id="statReplies" value="42">
-            </div>
-            <div class="field">
-              <label>Retweets</label>
-              <input type="text" id="statRetweets" value="1.2K">
-            </div>
-            <div class="field">
-              <label>Likes</label>
-              <input type="text" id="statLikes" value="9.4K">
-            </div>
-          </div>
-        </div>
-
-        <div class="panel" style="margin-top:20px;">
           <div class="panel-title">Theme</div>
           <div class="theme-row">
             <button class="theme-btn light-btn active" onclick="setTheme('light',this)">☀️ Light</button>
@@ -544,7 +523,7 @@
       <!-- Preview -->
       <div class="preview-panel">
         <div class="panel-title">Preview</div>
-        <div class="phone-frame">
+        <div class="phone-frame" id="phone-frame">
           <div id="tweet-card">
             <div class="tc-header">
               <img id="tc-avatar" class="tc-avatar"
@@ -553,8 +532,8 @@
               <div class="tc-user">
                 <div class="tc-name-row">
                   <span class="tc-name" id="tc-name">Bukan Coretan</span>
-                  <svg id="tc-verified" class="tc-verified" viewBox="0 0 24 24" fill="#1d9bf0">
-                    <path d="M22.25 12c0-1.43-.88-2.67-2.19-3.34.46-1.39.2-2.9-.81-3.91s-2.52-1.27-3.91-.81c-.66-1.31-1.91-2.19-3.34-2.19s-2.67.88-3.33 2.19c-1.4-.46-2.91-.2-3.92.81s-1.26 2.52-.8 3.91-.95 1.91-2.19 3.34c0 1.43.88 2.67 2.19 3.34-.46 1.39-.2 2.9.81 3.91s2.52 1.27 3.91.81c.66 1.31 1.91 2.19 3.34 2.19s2.67-.88 3.33-2.19c1.4.46 2.91.2 3.92-.81s1.26-2.52.8-3.91 1.95-1.91 2.19-3.34zm-11.08 5.54c-.72 0-1.37-.29-1.85-.77-.47-.48-.77-1.15-.82-1.9h1.60c.05.48.36.89.77 1.04.41.15.87.06 1.22-.25.35-.31.56-.77.56-1.25 0-.48-.2-.94-.56-1.25-.35-.31-.81-.4-1.22-.25-.41.15-.72.56-.77 1.04h-1.60c.05-.75.35-1.42.82-1.9.47-.48 1.13-.77 1.85-.77.72 0 1.37.29 1.85.77.47.48.77 1.15.82 1.9-.05.75-.35 1.42-.82 1.9-.47.48-1.13.77-1.85.77z"/>
+                  <svg id="tc-lock" class="tc-lock" viewBox="0 0 24 24">
+                    <g><path d="M17.5 7H17v-.25c0-2.76-2.24-5-5-5s-5 2.24-5 5V7h-.5C5.12 7 4 8.12 4 9.5v9C4 19.88 5.12 21 6.5 21h11c1.38 0 2.5-1.12 2.5-2.5v-9C20 8.12 18.88 7 17.5 7zM13 16.73V18h-2v-1.27c-.59-.34-1-.99-1-1.73 0-1.1.9-2 2-2s2 .9 2 2c0 .74-.4 1.39-1 1.73zM15 7H9v-.25c0-1.66 1.34-3 3-3s3 1.34 3 3V7z"/></g>
                   </svg>
                 </div>
                 <div class="tc-handle" id="tc-handle">@bukan.coretan</div>
@@ -573,16 +552,19 @@
             </div>
 
             <div class="tc-stats-bar">
-              <div class="tc-stat"><strong id="tc-replies">42</strong> <span>Replies</span></div>
-              <div class="tc-stat"><strong id="tc-retweets">1.2K</strong> <span>Retweets</span></div>
-              <div class="tc-stat"><strong id="tc-likes">9.4K</strong> <span>Likes</span></div>
+              <svg class="tc-activity-icon" viewBox="0 0 24 24">
+                <g><path d="M8.75 21V3h2v18h-2zM18 21V8.5h2V21h-2zM4 21l.004-10h2L6 21H4zm9.248 0v-7h2v7h-2z"/></g>
+              </svg>
+              View Tweet activity
             </div>
 
             <div class="tc-actions">
               <svg class="tc-action-icon" viewBox="0 0 24 24"><path d="M1.751 10c0-4.42 3.584-8 8.005-8h4.366c4.49 0 8.129 3.64 8.129 8.13 0 2.96-1.607 5.68-4.196 7.11l-8.054 4.46v-3.69h-.067c-4.49.1-8.183-3.51-8.183-8.01zm8.005-6c-3.317 0-6.005 2.69-6.005 6 0 3.37 2.77 6.08 6.138 6.01l.351-.01h1.761v2.3l5.087-2.81c1.951-1.08 3.163-3.13 3.163-5.36 0-3.39-2.744-6.13-6.129-6.13H9.756z"/></svg>
               <svg class="tc-action-icon" viewBox="0 0 24 24"><path d="M4.5 3.88l4.432 4.14-1.364 1.46L5.5 7.55V16c0 1.1.896 2 2 2H13v2H7.5c-2.209 0-4-1.79-4-4V7.55L1.432 9.48.068 8.02 4.5 3.88zM16.5 6H11V4h5.5c2.209 0 4 1.79 4 4v8.45l2.068-1.93 1.364 1.46-4.432 4.14-4.432-4.14 1.364-1.46 2.068 1.93V8c0-1.1-.896-2-2-2z"/></svg>
               <svg class="tc-action-icon" viewBox="0 0 24 24"><path d="M16.697 5.5c-1.222-.06-2.679.51-3.89 2.16l-.805 1.09-.806-1.09C9.984 6.01 8.526 5.44 7.304 5.5c-1.243.07-2.349.78-2.91 1.91-.552 1.12-.633 2.78.479 4.82 1.074 1.97 3.257 4.27 7.129 6.61 3.87-2.34 6.052-4.64 7.126-6.61 1.111-2.04 1.03-3.7.477-4.82-.561-1.13-1.666-1.84-2.908-1.91zm4.187 7.69c-1.351 2.48-4.001 5.12-8.379 7.67l-.503.3-.504-.3c-4.379-2.55-7.029-5.19-8.382-7.67-1.36-2.5-1.41-4.86-.514-6.67.887-1.79 2.647-2.91 4.601-3.01 1.651-.09 3.368.56 4.798 2.01 1.429-1.45 3.146-2.1 4.796-2.01 1.954.1 3.714 1.22 4.601 3.01.896 1.81.846 4.17-.514 6.67z"/></svg>
-              <svg class="tc-action-icon" viewBox="0 0 24 24"><path d="M12 2.59l5.7 5.7-1.41 1.42L13 6.41V16h-2V6.41l-3.3 3.3-1.41-1.42L12 2.59zM21 15l-.02 3.51c0 1.38-1.12 2.49-2.5 2.49H5.5C4.11 21 3 19.88 3 18.5v-9C3 8.12 4.12 7 5.5 7H11v2H5.5c-.83 0-1.5.67-1.5 1.5v9c0 .83.67 1.5 1.5 1.5h13c.83 0 1.5-.67 1.5-1.5l.02-3.51h2z"/></svg>
+              <svg class="tc-action-icon" viewBox="0 0 16 16" fill="rgb(83,100,113)">
+                <path d="M13.5 1a1.5 1.5 0 1 0 0 3 1.5 1.5 0 0 0 0-3M11 2.5a2.5 2.5 0 1 1 .603 1.628l-6.718 3.12a2.5 2.5 0 0 1 0 1.504l6.718 3.12a2.5 2.5 0 1 1-.488.876l-6.718-3.12a2.5 2.5 0 1 1 0-3.256l6.718-3.12A2.5 2.5 0 0 1 11 2.5m-8.5 4a1.5 1.5 0 1 0 0 3 1.5 1.5 0 0 0 0-3m11 5.5a1.5 1.5 0 1 0 0 3 1.5 1.5 0 0 0 0-3"/>
+              </svg>
             </div>
           </div>
         </div>
@@ -605,9 +587,6 @@
       tweetTime:    () => document.getElementById('tc-time').textContent = v('tweetTime'),
       tweetDate:    () => document.getElementById('tc-date').textContent = v('tweetDate'),
       tweetClient:  () => document.getElementById('tc-client').textContent = v('tweetClient'),
-      statReplies:  () => document.getElementById('tc-replies').textContent = v('statReplies'),
-      statRetweets: () => document.getElementById('tc-retweets').textContent = v('statRetweets'),
-      statLikes:    () => document.getElementById('tc-likes').textContent = v('statLikes'),
       avatarUrl:    () => setAvatarSrc(v('avatarUrl')),
     };
 
@@ -616,8 +595,8 @@
       if (el) el.addEventListener('input', syncMap[id]);
     });
 
-    document.getElementById('verifiedCheck').addEventListener('change', function() {
-      document.getElementById('tc-verified').style.display = this.checked ? '' : 'none';
+    document.getElementById('lockCheck').addEventListener('change', function() {
+      document.getElementById('tc-lock').style.display = this.checked ? '' : 'none';
     });
 
     function v(id) { return document.getElementById(id).value; }
@@ -661,13 +640,16 @@
 
       try {
         const card = document.getElementById('tweet-card');
-        const canvas = await html2canvas(card, {
-          scale: 3,
+        const frame = document.querySelector('.phone-frame');
+        const isDark = card.classList.contains('dark-theme');
+        const isDim  = card.classList.contains('dim-theme');
+        const bg = isDark ? '#15202b' : isDim ? '#1e2732' : '#ffffff';
+
+        const canvas = await html2canvas(frame, {
+          scale: 4,
           useCORS: true,
           allowTaint: true,
-          backgroundColor: card.classList.contains('dark-theme') ? '#15202b'
-                         : card.classList.contains('dim-theme')  ? '#1e2732'
-                         : '#ffffff',
+          backgroundColor: bg,
           logging: false,
         });
 
